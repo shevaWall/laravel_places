@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlaceRequest;
 use App\Models\Images;
 use App\Models\Places;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class PlacesController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function sendForm(Request $request)
+    public function sendForm(PlaceRequest $request)
     {
         $newPlace = Places::create([
             'name'          => $request->name,

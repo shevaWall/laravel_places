@@ -6,6 +6,19 @@
             <h1 class="text-center">Добавить место</h1>
         </div>
         <div class="row">
+            @if($errors->any())
+                <div class="col-12 alert alert-danger">
+                    <p>Ошибки:</p>
+                    <ul>
+                        @foreach($errors->all() as $err)
+                            <li>
+                                {{$err}}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form  action="/places/add" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -37,8 +50,6 @@
                         <button type="submit" class="btn btn-success" name="action" value="return">Добавить и вернуться</button>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>
