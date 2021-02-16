@@ -23,16 +23,16 @@
                 @csrf
                 <div class="mb-3">
                     <label for="placesInputName" class="form-label">Название места</label>
-                    <input type="text" class="form-control" id="placesInputName" aria-describedby="nameHelp" name="name">
+                    <input type="text" class="form-control" id="placesInputName" aria-describedby="nameHelp" name="name" value="{{old('name')}}">
                     <div id="nameHelp" class="form-text">Введите название места, в котором вы были</div>
                 </div>
                 <div class="mb-3">
                     <label for="laravelInputType" class="form-label">Тип</label>
-                    <select class="form-select" id="laravelInputType" name="places_type">
-                        <option selected hidden>Тип</option>
-                        <option value="Памятники" >Памятники</option>
-                        <option value="Дворцы">Дворцы</option>
-                        <option value="Мосты">Мосты</option>
+                    <select class="form-select" id="laravelInputType" name="places_type" >
+                        <option hidden {{old('places_type') == 'Тип' ? 'selected' : ""}}>Тип</option>
+                        <option value="Памятники" {{old('places_type') == 'Памятники' ? 'selected' : ""}}>Памятники</option>
+                        <option value="Дворцы" {{old('places_type') == 'Дворцы' ? 'selected' : ""}}>Дворцы</option>
+                        <option value="Мосты" {{old('places_type') == 'Мосты' ? 'selected' : ""}}>Мосты</option>
                     </select>
                 </div>
                 <div class="mb-3">
