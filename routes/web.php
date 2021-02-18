@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PlacesController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [PlacesController::class, "index"])
     ->name('index');
 
+
+/**
+ * маршруты для взаимодействия с моделью Places
+ */
 Route::group([
     //'middleware'=>  '',
     'prefix'    =>  'places',
@@ -26,7 +31,7 @@ Route::group([
     Route::get("/", [PlacesController::class, "index"])
         ->name('showPlacesList');
 
-    Route::view('add', "showForm")
+    Route::view('add', "places.showForm")
         ->name('showForm');
     Route::post('add', [PlacesController::class, "sendForm"])
         ->name('SubmitForm');
@@ -42,6 +47,21 @@ Route::group([
 
     Route::get("remove/{id}", [PlacesController::class, "remove"])
         ->name('removePlace');
+});
+
+/**
+ * маршруты для взаимодействия с моделью Images
+ */
+Route::group([
+//    'middleware'=>  '',
+    'prefix'    =>  'photos',
+    'as'        =>  'photos.',
+], function(){
+    Route::get("add", [ImagesController::class, 'index'])
+        ->name('show_form');
+
+    Route::post('add', [ImagesController::class, "submitForm"])
+        ->name('submit_form');
 });
 
 

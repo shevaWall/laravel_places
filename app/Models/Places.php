@@ -11,7 +11,13 @@ class Places extends Model
 
     protected $guarded=[];
 
+    // отношения с Image <3
     public function image(){
         return $this->hasMany(Images::class, 'place_id', 'id')->orderBy('updated_at', 'desc');
+    }
+
+    // получение только поля name из БД
+    public function scopePlaceIdAndNameOnly($query){
+        return $query->select(['id', 'name']);
     }
 }

@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('places.showForm')}}">Добавить место</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('photos.show_form')}}">Добавить изображения</a>
+                </li>
             </ul>
         </div>
     </div>

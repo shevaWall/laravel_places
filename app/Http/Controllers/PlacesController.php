@@ -17,7 +17,7 @@ class PlacesController extends Controller
      */
     public function index()
     {
-        return view('showPlaces')
+        return view('places.showPlaces')
             ->with('places', Places::all());
     }
 
@@ -49,10 +49,10 @@ class PlacesController extends Controller
 
 
         if ($request->action == 'stay')
-            return view('showForm');
+            return view('places.showForm');
 
         if ($request->action == 'return')
-            return redirect("/places");
+            return redirect()->route('index');
     }
 
     /**
@@ -74,7 +74,7 @@ class PlacesController extends Controller
     {
         $place = Places::findOrFail($id)->with('image')->where('places.id', $id)->get();
 
-        return view('showPlace')
+        return view('places.showPlace')
             ->with('place', $place[0]);
     }
 
@@ -86,7 +86,7 @@ class PlacesController extends Controller
     public function remove($id)
     {
         Places::find($id)->delete();
-        return redirect("/places");
+        return redirect()->route('index');
     }
 
     /**
@@ -97,9 +97,8 @@ class PlacesController extends Controller
     public function addPlacePhotoForm($id){
         $place = Places::findOrFail($id)->with('image')->where('places.id', $id)->get();
 
-        return view('addPhotoPlace')
-            ->with('place', $place[0])
-            ;
+        return view('places.addPhotoPlace')
+            ->with('place', $place[0]);
     }
 
 
@@ -122,6 +121,6 @@ class PlacesController extends Controller
             }
         }
 
-        return redirect("/places/$request->place_id/photos/add");
+        return redirect()->route('places.showFormAddPhoto', $request->place_id);
     }
 }

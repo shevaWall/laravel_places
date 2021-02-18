@@ -10,4 +10,6 @@ class Images extends Model
     use HasFactory;
 
     protected $fillable = ['place_id', 'image'];
+
+
 }

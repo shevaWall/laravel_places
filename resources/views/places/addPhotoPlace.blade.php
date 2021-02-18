@@ -1,4 +1,4 @@
-@extends('layout', ['title' => "добавить место для '$place->name'"])
+@extends('layout', ['title' => "добавить изображение для '$place->name'"])
 
 @section('content')
     <div class="container">
