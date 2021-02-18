@@ -16,6 +16,11 @@ class ImagesController extends PlacesController
             ->with('places', $places);
     }
 
+    /**
+     * Загрузка изображений для какого-либо места
+     * @param AddImageForPlaceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function submitForm(AddImageForPlaceRequest $request){
         if($request->file('image')){
             foreach ($request->file('image') as $img) {

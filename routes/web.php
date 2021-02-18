@@ -59,7 +59,6 @@ Route::group([
 ], function(){
     Route::get("add", [ImagesController::class, 'index'])
         ->name('show_form');
-
     Route::post('add', [ImagesController::class, "submitForm"])
         ->name('submit_form');
 });
