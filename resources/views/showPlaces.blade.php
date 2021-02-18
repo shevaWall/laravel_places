@@ -21,13 +21,13 @@
                         <th scope="row">{{$place->id}}</th>
                         <td>{{$place->name}}</td>
                         <td>{{$place->places_type}}</td>
-                        <td><a href="/places/{{$place->id}}">посмотреть</a></td>
-                        <td><a href="/places/remove/{{$place->id}}">удалить</a></td>
+                        <td><a href="{{route('places.showPlaceInfo', $place->id)}}">посмотреть</a></td>
+                        <td><a href="{{route('places.removePlace', $place->id)}}">удалить</a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            <div class="text-center"><a href="/places/add">Добавить место</a></div>
+            <div class="text-center"><a href="{{route('places.showForm')}}">Добавить место</a></div>
         </div>
     </div>
 @endsection

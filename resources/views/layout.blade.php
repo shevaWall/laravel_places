@@ -22,6 +22,11 @@
     <title>Hello, world!{{ " - $title" }}</title>
   </head>
   <body>
+  <div class="container">
+      <div class="row">
+          @include('header_menu')
+      </div>
+  </div>
 
   @yield('content')
 

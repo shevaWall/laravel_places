@@ -72,10 +72,10 @@ class PlacesController extends Controller
      */
     public function showPlaceInfo($id)
     {
-        $place = Places::findOrFail($id)->with('image')->first();
+        $place = Places::findOrFail($id)->with('image')->where('places.id', $id)->get();
 
         return view('showPlace')
-            ->with('place', $place);
+            ->with('place', $place[0]);
     }
 
     /**
@@ -95,10 +95,10 @@ class PlacesController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function addPlacePhotoForm($id){
-        $place = Places::findOrFail($id)->with('image')->first();
+        $place = Places::findOrFail($id)->with('image')->where('places.id', $id)->get();
 
         return view('addPhotoPlace')
-            ->with('place', $place)
+            ->with('place', $place[0])
             ;
     }
 

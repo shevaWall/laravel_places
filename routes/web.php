@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PlacesController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,20 +15,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", [PlacesController::class, "index"])
+    ->name('index');
+
+Route::group([
+    //'middleware'=>  '',
+    'prefix'    =>  'places',
+    'as'        =>  'places.',
+], function(){
+    Route::get("/", [PlacesController::class, "index"])
+        ->name('showPlacesList');
+
+    Route::view('add', "showForm")
+        ->name('showForm');
+    Route::post('add', [PlacesController::class, "sendForm"])
+        ->name('SubmitForm');
+
+    Route::get('{id}', [PlacesController::class, "showPlaceInfo"])
+        ->name('showPlaceInfo');
+
+    Route::get('{id}/photos/add', [PlacesController::class, "addPlacePhotoForm"])
+        ->name('showFormAddPhoto');
+    Route::post('{id}/photos/add', [PlacesController::class, "addPlacePhotoSubmit"])
+        ->name('submitFormAddPhoto');
+
+
+    Route::get("remove/{id}", [PlacesController::class, "remove"])
+        ->name('removePlace');
 });
 
 
-Route::get("/places", [PlacesController::class, "index"]);
 
-Route::view('/places/add', "showForm");
-Route::post('/places/add', [PlacesController::class, "sendForm"]);
 
-Route::get("/places/{id}", [PlacesController::class, "showPlaceInfo"]);
 
-Route::get('/places/{id}/photos/add', [PlacesController::class, "addPlacePhotoForm"]);
-Route::post('/places/{id}/photos/add', [PlacesController::class, "addPlacePhotoSubmit"]);
 
-Route::get("/places/remove/{id}", [PlacesController::class, "remove"]);
 
+
+
+
+/*Route::middleware('auth')->group(function(){
+    Route::prefix('/admin')->group(function(){
+        Route::name('admin.')->group(function(){
+
+            Route::get("users", [Admin\UsersController::class, "index"])
+                ->name('users');
+            Route::get("posts", [Admin\PostsController::class, "index"])
+                ->name('posts');
+
+        });
+    });
+});*/
