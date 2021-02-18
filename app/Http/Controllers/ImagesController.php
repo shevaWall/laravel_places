@@ -12,8 +12,12 @@ class ImagesController extends PlacesController
     public function index(){
         $places = Places::placeIdAndNameOnly()->get();
 
-        return view('photos.showFormAddPhoto')
-            ->with('places', $places);
+        if(count($places) > 0){
+            return view('photos.showFormAddPhoto')
+                ->with('places', $places);
+        }
+
+        return redirect()->route('index');
     }
 
     /**
