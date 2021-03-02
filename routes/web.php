@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PlacesController;
@@ -65,22 +67,10 @@ Route::group([
 
 
 
+Route::get("countries", [CountriesController::class, "index"]);
 
+Route::get("comments", [CommentsController::class, "index"]);
 
-
-
-
-
-
-/*Route::middleware('auth')->group(function(){
-    Route::prefix('/admin')->group(function(){
-        Route::name('admin.')->group(function(){
-
-            Route::get("users", [Admin\UsersController::class, "index"])
-                ->name('users');
-            Route::get("posts", [Admin\PostsController::class, "index"])
-                ->name('posts');
-
-        });
-    });
-});*/
+Route::get("videos/{id}/comments", [CommentsController::class, "videoComments"]);
+Route::get("video_comments/add", [CommentsController::class, "videoComment"]);
+Route::get("photo_comments/add", [CommentsController::class, "photoComment"]);
